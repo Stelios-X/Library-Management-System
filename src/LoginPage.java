@@ -45,6 +45,11 @@ public class LoginPage extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Nimbus Sans", 1, 18)); // NOI18N
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,6 +104,37 @@ public class LoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String url = "jdbc:mariadb://localhost:3360/library";
+        String mysqluser = "librarian";
+        String mysqlpwd = "kC^u7Tu[HRX%dXj8m87"
+        String pswrd = new String(value:password,getPassword());
+        String username = user.getText();
+        String query = ("SELECT PASSWORD FROM admin WHERE user_id = '"+username+"';");
+        try
+        {
+            Connection conn = DriverManager.getConnection(url, mysqluser, mysqlpwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            if(rs.next())
+            {
+                String realpswrd = rs.getString("PASSWORD");
+                
+                if(realpswrd.equals(pswrd))
+                {
+                    Dashboard dsh = new Dashboard();
+                    dsh.setVisible(true);
+                    
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "username or password ");
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
