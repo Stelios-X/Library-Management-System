@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -107,7 +110,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mariadb://localhost:3360/library";
+        String url = "jdbc:mariadb://localhost:3360/library?useSSL=false";
         String mysqluser = "librarian";
         String mysqlpwd = "kC^u7Tu[HRX%dXj8m87"
         String pswrd = new String(value:password,getPassword());
@@ -132,6 +135,10 @@ public class LoginPage extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(this, "username or password ");
                 }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Wrong Username");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
