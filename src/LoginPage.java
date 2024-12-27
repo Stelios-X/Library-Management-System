@@ -1,4 +1,8 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /*
@@ -29,7 +33,7 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
+        user = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
@@ -66,7 +70,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGap(103, 103, 103))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(username)
+                            .addComponent(user)
                             .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                         .addGap(41, 41, 41))))
             .addGroup(layout.createSequentialGroup()
@@ -90,7 +94,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,10 +114,10 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String url = "jdbc:mariadb://localhost:3360/library?useSSL=false";
+        String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String mysqluser = "librarian";
-        String mysqlpwd = "kC^u7Tu[HRX%dXj8m87"
-        String pswrd = new String(value:password,getPassword());
+        String mysqlpwd = "kC^u7Tu[HRX%dXj8m87";
+        String pswrd = new String(password.getPassword());
         String username = user.getText();
         String query = ("SELECT PASSWORD FROM admin WHERE user_id = '"+username+"';");
         try
@@ -129,18 +133,24 @@ public class LoginPage extends javax.swing.JFrame {
                 {
                     Dashboard dsh = new Dashboard();
                     dsh.setVisible(true);
+                    this.dispose();
                     
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "username or password ");
+                    JOptionPane.showMessageDialog(this, "username or password entered is incorrect");
                 }
             }
             else
             {
                 JOptionPane.showMessageDialog(this, "Wrong Username");
             }
-        }
+            
+        }    catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -184,6 +194,6 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }
