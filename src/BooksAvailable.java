@@ -95,6 +95,22 @@ public class BooksAvailable extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)jTable.getModel();
+        String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
+        String mysqluser = "librarian";
+        String mysqlpwd = "kC^u7Tu[HRX%dXj8m87";
+        String query = "SELECT * FROM books;";
+        try
+        {
+            Connection conn = DriverManager.getConnection(url, mysqluser, mysqlpwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next())
+            {
+                String bookid = rs.getString("book_id");
+                String category = rs.getString("category");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
