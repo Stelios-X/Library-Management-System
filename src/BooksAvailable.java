@@ -32,7 +32,7 @@ public class BooksAvailable extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        fetch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,10 +53,10 @@ public class BooksAvailable extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Fetch");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        fetch.setText("Fetch");
+        fetch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                fetchActionPerformed(evt);
             }
         });
 
@@ -68,7 +68,7 @@ public class BooksAvailable extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fetch, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -82,7 +82,7 @@ public class BooksAvailable extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(fetch))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -93,25 +93,42 @@ public class BooksAvailable extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void fetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
+<<<<<<< HEAD
+        String user = "librarian";
+        String pwd = "kC^u7Tu[HRX%dXj8m87";
+        String query = "SELECT * FROM books";     
+        try
+        {
+            Connection conn = DriveManager.getConnection(url, user, pwd);
+=======
         String mysqluser = "librarian";
         String mysqlpwd = "kC^u7Tu[HRX%dXj8m87";
         String query = "SELECT * FROM books;";
         try
         {
             Connection conn = DriverManager.getConnection(url, mysqluser, mysqlpwd);
+>>>>>>> master
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next())
             {
                 String bookid = rs.getString("book_id");
+<<<<<<< HEAD
+                String category = rs.getString("category");
+                String name = rs.getString("name");
+                String author = rs.getString("author");
+                int copies = rs.getInt("copies");
+                model.addRow(new object[] {bookid, category, name,author, copies});
+=======
                 String category = rs.getString("category");String name= rs.getString("name");
                 String author = rs.getString("author");
                 int copies = rs.getInt("copies");
                 model.addRow(new Object[] {bookid, category, name, author, copies});
+>>>>>>> master
             }
             rs.close();
             stm.close();
@@ -120,7 +137,11 @@ public class BooksAvailable extends javax.swing.JFrame {
         {
             
         }
+<<<<<<< HEAD
+    }//GEN-LAST:event_fetchActionPerformed
+=======
     }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>> master
 
     /**
      * @param args the command line arguments
@@ -158,8 +179,8 @@ public class BooksAvailable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton fetch;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
