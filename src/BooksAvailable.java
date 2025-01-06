@@ -97,22 +97,38 @@ public class BooksAvailable extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
+<<<<<<< HEAD
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
         String query = "SELECT * FROM books";     
         try
         {
             Connection conn = DriveManager.getConnection(url, user, pwd);
+=======
+        String mysqluser = "librarian";
+        String mysqlpwd = "kC^u7Tu[HRX%dXj8m87";
+        String query = "SELECT * FROM books;";
+        try
+        {
+            Connection conn = DriverManager.getConnection(url, mysqluser, mysqlpwd);
+>>>>>>> master
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next())
             {
                 String bookid = rs.getString("book_id");
+<<<<<<< HEAD
                 String category = rs.getString("category");
                 String name = rs.getString("name");
                 String author = rs.getString("author");
                 int copies = rs.getInt("copies");
                 model.addRow(new object[] {bookid, category, name,author, copies});
+=======
+                String category = rs.getString("category");String name= rs.getString("name");
+                String author = rs.getString("author");
+                int copies = rs.getInt("copies");
+                model.addRow(new Object[] {bookid, category, name, author, copies});
+>>>>>>> master
             }
             rs.close();
             stm.close();
@@ -121,7 +137,11 @@ public class BooksAvailable extends javax.swing.JFrame {
         {
             
         }
+<<<<<<< HEAD
     }//GEN-LAST:event_fetchActionPerformed
+=======
+    }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>> master
 
     /**
      * @param args the command line arguments
