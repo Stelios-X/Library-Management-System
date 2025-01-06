@@ -32,7 +32,7 @@ public class BooksAvailable extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        fetchButton = new javax.swing.JButton();
+        fetch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,10 +53,10 @@ public class BooksAvailable extends javax.swing.JFrame {
             }
         });
 
-        fetchButton.setText("Fetch");
-        fetchButton.addActionListener(new java.awt.event.ActionListener() {
+        fetch.setText("Fetch");
+        fetch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fetchButtonActionPerformed(evt);
+                fetchActionPerformed(evt);
             }
         });
 
@@ -68,7 +68,7 @@ public class BooksAvailable extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(fetchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fetch, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -82,7 +82,7 @@ public class BooksAvailable extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(fetchButton))
+                    .addComponent(fetch))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -93,14 +93,35 @@ public class BooksAvailable extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void fetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchButtonActionPerformed
+    private void fetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
-        String query = "SELECT * FROM books";      
-    }//GEN-LAST:event_fetchButtonActionPerformed
+        String query = "SELECT * FROM books";     
+        try
+        {
+            Connection conn = DriveManager.getConnection(url, user, pwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next())
+            {
+                String bookid = rs.getString("book_id");
+                String category = rs.getString("category");
+                String name = rs.getString("name");
+                String author = rs.getString("author");
+                int copies = rs.getInt("copies");
+                model.addRow(new object[] {bookid, category, name,author, copies});
+            }
+            rs.close();
+            stm.close();
+        }
+        catch(Exception e)
+        {
+            
+        }
+    }//GEN-LAST:event_fetchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,7 +159,7 @@ public class BooksAvailable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton fetchButton;
+    private javax.swing.JButton fetch;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
