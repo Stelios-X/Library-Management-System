@@ -38,6 +38,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setText("DASHBOARD");
 
         b1.setText("Books available");
+        b1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1ActionPerformed(evt);
+            }
+        });
 
         b2.setText("Add books");
 
@@ -104,6 +109,12 @@ public class Dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
+        // TODO add your handling code here:
+        BooksAvailable books = new BooksAvailable();
+        books.setVisible(true);
+    }//GEN-LAST:event_b1ActionPerformed
 
     /**
      * @param args the command line arguments
