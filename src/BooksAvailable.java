@@ -102,7 +102,7 @@ public class BooksAvailable extends javax.swing.JFrame {
         String query = "SELECT * FROM books";     
         try
         {
-            Connection conn = DriveManager.getConnection(url, user, pwd);
+            Connection conn = DriverManager.getConnection(url, user, pwd);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next())
@@ -112,7 +112,7 @@ public class BooksAvailable extends javax.swing.JFrame {
                 String name = rs.getString("name");
                 String author = rs.getString("author");
                 int copies = rs.getInt("copies");
-                model.addRow(new object[] {bookid, category, name,author, copies});
+                model.addRow(new Object[] {bookid, category, name,author, copies});
             }
             rs.close();
             stm.close();
