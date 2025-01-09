@@ -162,16 +162,17 @@ public class AddBooks extends javax.swing.JFrame {
         String name = t3.getText();
         String author = t4.getText();
         int copies = Integer.parseInt(t5.getText());
+        //This chcecks if the book is currently registsred in the library
         String checkquery = "update books set copies=+'"+copies+"' where name=+'"+name+"' and category ='"+category+"' and author = '"+author+"'; ";
         
         try
         {
             Connection conn = DriverManager.getConnection(url, user, pwd);
             Statement stmnt = conn.createStatement();
-            int rows = stmnt.executeIpdate(checkquery);
+            int rows = stmnt.executeUpdate(checkquery);
             if(rows>0)
             {
-                JOptionPane.showMessageDialog(this, "One record added to library");
+                JOptionPane.showMessageDialog(this, "One record has been added to library");
             }
             else
             {
@@ -182,8 +183,12 @@ public class AddBooks extends javax.swing.JFrame {
                 stm.setString(4, author);
                 stm.setInt(5, copies);
                 stm.execute();
-                
+                JOptionPane.showMessageDialog(this, "One record added to the library");
             }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
