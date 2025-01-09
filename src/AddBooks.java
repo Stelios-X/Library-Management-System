@@ -162,7 +162,7 @@ public class AddBooks extends javax.swing.JFrame {
         String name = t3.getText();
         String author = t4.getText();
         int copies = Integer.parseInt(t5.getText());
-        String checkquery = "update books set copies=+"+copies+" where name=+"+name+" and category ="+category+"";
+        String checkquery = "update books set copies=+'"+copies+"' where name=+'"+name+"' and category ='"+category+"' and author = '"+author+"'; ";
         
         try
         {
@@ -171,6 +171,17 @@ public class AddBooks extends javax.swing.JFrame {
             int rows = stmnt.executeIpdate(checkquery);
             if(rows>0)
             {
+                JOptionPane.showMessageDialog(this, "One record added to library");
+            }
+            else
+            {
+                PreparedStatement stm = conn.prepareCall(query);
+                stm.setString(1,id);
+                stm.setString(2, category);
+                stm.setString(3, name);
+                stm.setString(4, author);
+                stm.setInt(5, copies);
+                stm.execute();
                 
             }
         }
