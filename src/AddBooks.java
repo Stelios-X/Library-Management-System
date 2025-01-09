@@ -6,7 +6,14 @@
 /**
  *
  * @author brandon
+ * 
+ * 
+ * 
  */
+import java.sql.*;
+import javax.swing.*;
+
+
 public class AddBooks extends javax.swing.JFrame {
 
     /**
@@ -154,6 +161,19 @@ public class AddBooks extends javax.swing.JFrame {
         String category = t2.getText();
         String name = t3.getText();
         String author = t4.getText();
+        int copies = Integer.parseInt(t5.getText());
+        String checkquery = "update books set copies=+"+copies+" where name=+"+name+" and category ="+category+"";
+        
+        try
+        {
+            Connection conn = DriverManager.getConnection(url, user, pwd);
+            Statement stmnt = conn.createStatement();
+            int rows = stmnt.executeIpdate(checkquery);
+            if(rows>0)
+            {
+                
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
