@@ -143,50 +143,73 @@ public class AddBooks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
-        String query = "INSERT INTO books VALUES(?,?,?,?,?)"; 
-        String id = t1.getText();
-        String category = t2.getText();
-        String name = t3.getText();
-        String author = t4.getText();
-        int copies = Integer.parseInt(t5.getText());
-        //This chcecks if the book is currently registsred in the library
-        String checkquery = "UPDATE books SET copies = copies + " + copies + " WHERE name = '" + name + "' AND category = '" + category + "' AND author = '" + author + "'";
-        
-        try
-        {
-            Connection conn = DriverManager.getConnection(url, user, pwd);
-            Statement stmnt = conn.createStatement();
-            int rows = stmnt.executeUpdate(checkquery);
-            if(rows>0)
-            {
-                JOptionPane.showMessageDialog(this, "One record has been added to library");
-            }
-            else
-            {
-                PreparedStatement stm = conn.prepareCall(query);
-                stm.setString(1,id);
-                stm.setString(2, category);
-                stm.setString(3, name);
-                stm.setString(4, author);
-                stm.setInt(5, copies);
-                stm.execute();
-                JOptionPane.showMessageDialog(this, "One record added to the library");
-            }
-            t1.setText(null);
-            t2.setText(null);
-            t3.setText(null);
-            t4.setText(null);
-            t5.setText(null);
-            
+        String insertQuery = "INSERT INTO books (id, category, name, author, copies) VALUES (?, ?, ?, ?, ?)";
+        String updateQuery = "UPDATE books SET copies = copies + ? WHERE name = ? AND category = ? AND author = ?";
+
+        String id = t1.getText().trim();
+        String category = t2.getText().trim();
+        String name = t3.getText().trim();
+        String author = t4.getText().trim();
+        String copiesText = t5.getText().trim();
+
+        // Input validation
+        if (id.isEmpty() || category.isEmpty() || name.isEmpty() || author.isEmpty() || copiesText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(this, e);
+
+        int copies;
+        try {
+            copies = Integer.parseInt(copiesText);
+            if (copies <= 0) {
+                JOptionPane.showMessageDialog(this, "Copies must be a positive number.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid number for copies.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+
+        try (Connection conn = DriverManager.getConnection(url, user, pwd)) {
+            // Check if the book already exists
+            try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
+                updateStmt.setInt(1, copies);
+                updateStmt.setString(2, name);
+                updateStmt.setString(3, category);
+                updateStmt.setString(4, author);
+
+                int rowsUpdated = updateStmt.executeUpdate();
+                if (rowsUpdated > 0) {
+                    JOptionPane.showMessageDialog(this, "Copies updated successfully.");
+                } else {
+                    // Insert new book if it doesn't exist
+                    try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
+                        insertStmt.setString(1, id);
+                        insertStmt.setString(2, category);
+                        insertStmt.setString(3, name);
+                        insertStmt.setString(4, author);
+                        insertStmt.setInt(5, copies);
+
+                        insertStmt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "New book added successfully.");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log for debugging
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Clear text fields
+        t1.setText(null);
+        t2.setText(null);
+        t3.setText(null);
+        t4.setText(null);
+        t5.setText(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
