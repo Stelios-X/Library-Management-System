@@ -147,7 +147,7 @@ public class AddBooks extends javax.swing.JFrame {
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
-        String insertQuery = "INSERT INTO books (id, category, name, author, copies) VALUES (?, ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO books (book_id, category, name, author, copies) VALUES (?, ?, ?, ?, ?)";
         String updateQuery = "UPDATE books SET copies = copies + ? WHERE name = ? AND category = ? AND author = ?";
 
         String id = t1.getText().trim();
