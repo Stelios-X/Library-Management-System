@@ -57,16 +57,6 @@ public class AddBooks extends javax.swing.JFrame {
 
         jLabel5.setText("Category");
 
-        t1.setText("jTextField1");
-
-        t3.setText("jTextField1");
-
-        t2.setText("jTextField1");
-
-        t5.setText("jTextField1");
-
-        t4.setText("jTextField1");
-
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
