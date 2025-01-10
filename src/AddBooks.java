@@ -147,14 +147,14 @@ public class AddBooks extends javax.swing.JFrame {
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
-        String query = "INSRET INTO books VALUES(?,?,?,?,?)"; 
+        String query = "INSERT INTO books VALUES(?,?,?,?,?)"; 
         String id = t1.getText();
         String category = t2.getText();
         String name = t3.getText();
         String author = t4.getText();
         int copies = Integer.parseInt(t5.getText());
         //This chcecks if the book is currently registsred in the library
-        String checkquery = "update books set copies=+'"+copies+"' where name=+'"+name+"' and category ='"+category+"' and author = '"+author+"'; ";
+        String checkquery = "UPDATE books SET copies = copies + " + copies + " WHERE name = '" + name + "' AND category = '" + category + "' AND author = '" + author + "'";
         
         try
         {
