@@ -185,6 +185,12 @@ public class AddBooks extends javax.swing.JFrame {
                 stm.execute();
                 JOptionPane.showMessageDialog(this, "One record added to the library");
             }
+            t1.setText(null);
+            t2.setText(null);
+            t3.setText(null);
+            t4.setText(null);
+            t5.setText(null);
+            
         }
         catch(Exception e)
         {
