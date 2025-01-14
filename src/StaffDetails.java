@@ -105,8 +105,13 @@ public class StaffDetails extends javax.swing.JFrame {
             ResultSet rs = stm.executeQuery(query);
             while(rs.next())
             {
-                
+                String staffid = rs.getString("staffId");
+                String name = rs.getString("name");
+                int contact = rs.getInt("contact");
+                model.addRow(new Object[] {staffid, name, contact});
             }
+            rs.close();
+            stm.close();
         }
         catch(Exception e)
         {
