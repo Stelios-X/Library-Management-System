@@ -7,6 +7,12 @@
  *
  * @author brandon
  */
+
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.*;
+
+
 public class StaffDetails extends javax.swing.JFrame {
 
     /**
