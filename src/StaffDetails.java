@@ -20,6 +20,7 @@ public class StaffDetails extends javax.swing.JFrame {
      */
     public StaffDetails() {
         initComponents();
+        setDefaultCloseOperation(StaffDetails.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -92,6 +93,10 @@ public class StaffDetails extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
+        String user = "librarian";
+        String pwd = "kC^u7Tu[HRX%dXj8m87";
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
