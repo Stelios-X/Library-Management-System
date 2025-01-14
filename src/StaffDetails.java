@@ -97,6 +97,21 @@ public class StaffDetails extends javax.swing.JFrame {
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
+        String query = "SELECT * FROM staff";
+        try
+        {
+            Connection conn = DriverManager.getConnection(url, user,pwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next())
+            {
+                
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
