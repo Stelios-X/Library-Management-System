@@ -8,6 +8,7 @@
  * @author brandon
  */
 
+//Importation of necessary libraries for the system.
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
