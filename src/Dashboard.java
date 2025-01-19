@@ -54,6 +54,11 @@ public class Dashboard extends javax.swing.JFrame {
         b3.setText("Remove books");
 
         b4.setText("Staff details");
+        b4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b4ActionPerformed(evt);
+            }
+        });
 
         b5.setText("Add staff");
 
@@ -122,6 +127,12 @@ public class Dashboard extends javax.swing.JFrame {
         AddBooks books = new AddBooks();
         books.setVisible(true);
     }//GEN-LAST:event_b2ActionPerformed
+
+    private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
+        // TODO add your handling code here:
+        StaffDetails staff = new StaffDetails();
+        staff.setVisible(true);
+    }//GEN-LAST:event_b4ActionPerformed
 
     /**
      * @param args the command line arguments
