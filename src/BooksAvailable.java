@@ -98,6 +98,7 @@ public class BooksAvailable extends javax.swing.JFrame {
 
     private void fetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchActionPerformed
         // TODO add your handling code here:
+        //Database credenials
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
