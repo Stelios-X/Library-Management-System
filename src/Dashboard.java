@@ -10,7 +10,7 @@
 public class Dashboard extends javax.swing.JFrame {
 
     /**
-     * Creates new form Dashboard
+     * Creates new form Dashboard with all the db entries.
      */
     public Dashboard() {
         initComponents();
