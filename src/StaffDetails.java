@@ -110,9 +110,9 @@ public class StaffDetails extends javax.swing.JFrame {
             ResultSet rs = stm.executeQuery(query);
             while(rs.next())
             {
-                String staffid = rs.getString("staffId");
-                String name = rs.getString("name");
-                int contact = rs.getInt("contact");
+                String staffid = rs.getString("STAFF_ID");
+                String name = rs.getString("NAME");
+                int contact = rs.getInt("CONTACT");
                 model.addRow(new Object[] {staffid, name, contact});
             }
             rs.close();

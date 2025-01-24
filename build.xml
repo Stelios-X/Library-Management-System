@@ -25,7 +25,7 @@
       -pre-compile-test:         called before javac compilation of JUnit tests
       -post-compile-test:        called after javac compilation of JUnit tests
       -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
+      -post-compile-test-single: called after javac compilation of single JUnit test
       -pre-jar:                  called before JAR building
       -post-jar:                 called after JAR building
       -post-clean:               called after cleaning build products
@@ -70,4 +70,20 @@
     nbproject/build-impl.xml file. 
 
     -->
+
+    <!-- Add the following targets to specify the source and target version and create the necessary directories -->
+    <property name="project.classpath" location="build"/>
+    
+    <target name="init" depends="-pre-init" description="initialize the project">
+        <mkdir dir="build"/>
+        <mkdir dir="build/classes"/>
+    </target>
+    
+    <target name="compile" depends="-pre-compile,init" description="compile the source">
+        <javac srcdir="src" destdir="build/classes" source="21" target="21" includeantruntime="false">
+            <classpath>
+                <path location="lib"/>
+            </classpath>
+        </javac>
+    </target>
 </project>
