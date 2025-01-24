@@ -137,7 +137,28 @@ public class AddStaff extends javax.swing.JFrame {
         String pwd = "kC^u7Tu[HRX%dXj8m87";
         String query = "insert into staff values(?,?,?)";
         String id = t1.getText();
-        String name = "";
+        String name = t2.getText();
+        int contact = Integer.parseInt(t3.getText());
+        
+        try
+        {
+            Connection conn = DriverManager.getConnection(url, user, pwd);
+            PreparedStatement stm = conn.prepareCall(query);
+            stm.setString(1, id);
+            stm.setString(2, name);
+            stm.setInt(3, contact);
+            stm.execute();
+            JOptionPane.showMessageDialog(this, "One Staff member added successfully");
+            
+            t1.setText(null);
+            t2.setText(null);
+            t3.setText(null);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
