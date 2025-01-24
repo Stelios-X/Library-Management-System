@@ -18,6 +18,7 @@ public class AddStaff extends javax.swing.JFrame {
      */
     public AddStaff() {
         initComponents();
+        setDefaultCloseOperation(AddStaff.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -55,6 +56,11 @@ public class AddStaff extends javax.swing.JFrame {
         });
 
         jButton2.setText("Add");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel4.setText("Add Staff");
@@ -126,6 +132,16 @@ public class AddStaff extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
+        String user = "librarian";
+        String pwd = "kC^u7Tu[HRX%dXj8m87";
+        String query = "insert into staff values(?,?,?)";
+        String id = "";
+        String name = "";
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
