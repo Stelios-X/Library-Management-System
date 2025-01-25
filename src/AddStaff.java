@@ -133,6 +133,7 @@ public class AddStaff extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        //Handles Database connection
         String url = "jdbc:mariadb://localhost:3306/library?useSSL=false";
         String user = "librarian";
         String pwd = "kC^u7Tu[HRX%dXj8m87";
@@ -141,7 +142,7 @@ public class AddStaff extends javax.swing.JFrame {
         String name = t2.getText();
         int contact = Integer.parseInt(t3.getText());
         
-        try
+        try //Creates connection
         {
             Connection conn = DriverManager.getConnection(url, user, pwd);
             PreparedStatement stm = conn.prepareCall(query);
