@@ -191,6 +191,7 @@ public class AddStaff extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        //UX definition here
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddStaff().setVisible(true);
@@ -198,6 +199,7 @@ public class AddStaff extends javax.swing.JFrame {
         });
     }
 
+    //Key component of variable
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
