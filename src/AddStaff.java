@@ -145,7 +145,7 @@ public class AddStaff extends javax.swing.JFrame {
         try //Creates connection
         {
             Connection conn = DriverManager.getConnection(url, user, pwd);
-            PreparedStatement stm = conn.prepareCall(query);
+            PreparedStatement stm = conn.prepareStatement(query);
             stm.setString(1, id);
             stm.setString(2, name);
             stm.setInt(3, contact);
