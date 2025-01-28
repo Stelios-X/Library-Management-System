@@ -14,7 +14,7 @@ import javax.swing.*;
 public class AddStaff extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddStaff
+     * Creates new form AddStaff for the UX
      */
     public AddStaff() {
         initComponents();
@@ -142,7 +142,7 @@ public class AddStaff extends javax.swing.JFrame {
         String name = t2.getText();
         int contact = Integer.parseInt(t3.getText());
         
-        try //Creates connection
+        try //Creates connection execution of conn
         {
             Connection conn = DriverManager.getConnection(url, user, pwd);
             PreparedStatement stm = conn.prepareStatement(query);
