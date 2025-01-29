@@ -6,6 +6,7 @@
 /**
  *
  * @author brandon
+ * bobby brandon
  */
 
 import java.sql.*;
@@ -199,7 +200,7 @@ public class AddStaff extends javax.swing.JFrame {
         });
     }
 
-    //Key component of variable
+    //Key component of variable adjusted according to the configuration.
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
