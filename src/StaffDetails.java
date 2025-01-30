@@ -9,6 +9,7 @@
  */
 
 //Importation of necessary libraries for the system.
+//Staff details update
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class StaffDetails extends javax.swing.JFrame {
      *
      * This class captures staff details connecting to the staff table.
      * @Connection establishes a connection 
+     * For capturing staff details
      * 
      */
     @SuppressWarnings("unchecked")
